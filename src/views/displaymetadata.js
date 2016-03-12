@@ -125,7 +125,7 @@ Bin.prototype.addWordAlternative = function(wa) {
   this._wordAlternatives.push(wa);
   for(var index = 0; index < this._wordAlternatives.length; index++) {
     var width = this._wordAlternatives[index].width();
-    if(width > this._maxWordAlternativeWidth) 
+    if(width > this._maxWordAlternativeWidth)
       this._maxWordAlternativeWidth = width;
   }
   this._height += wa.height();
@@ -174,7 +174,7 @@ Scene.prototype.draw = function() {
 
   for(var index = 0; index < this._bins.length; index++) {
     var bin = this._bins[index];
-    var x_visible = Math.abs(x) <= canvas.width; 
+    var x_visible = Math.abs(x) <= canvas.width;
     ctx.beginPath();
 
     if(bin._startTime > last_bin_end_time) {
@@ -189,7 +189,7 @@ Scene.prototype.draw = function() {
           ctx.lineTo(x - (radius + space), y + fontSize);
           ctx.stroke();
         }
-      }    
+      }
       if(x_visible) {
         ctx.moveTo(x + radius, y + fontSize);
         ctx.lineWidth = 2;
@@ -426,7 +426,7 @@ $('#left-arrow').click(function() {
   }
   hslider.value = updated_value;
   onHScroll();
-});   
+});
 
 $('#right-arrow').click(function() {
   var updated_value = Number(hslider.value) + hstep;
@@ -458,7 +458,7 @@ $('#btnLoadKWS input').change(function(e) {
     $('#error-wrong-keywords-filetype').css('display', 'block');
     return;
   }
- 
+
   var reader = new FileReader();
   reader.readAsText(selectedFile);
   reader.onload = function() {
@@ -520,7 +520,7 @@ function toggleSpottedKeywordClass(node) {
     node.getElementsByClassName('keyword_icon')[0].src  = 'images/close-icon.svg';
     node.className = 'keyword_expanded';
   }
-  else if(node.className == 'keyword_expanded') { 
+  else if(node.className == 'keyword_expanded') {
     node.getElementsByClassName('keyword_icon')[0].src  = 'images/open-icon.svg';
     node.className = 'keyword_collapsed';
   }
@@ -588,7 +588,7 @@ window.onKeywordOccurrenceSelected = function(start_time, keywordFragments) {
 function keywordToHashSet(normalized_text) {
   var hashSet = {};
   var segments = normalized_text.split(' ');
-  for(var index = 0; index < segments.length; index++) { 
+  for(var index = 0; index < segments.length; index++) {
     var segment = segments[index];
     hashSet[segment] = true;
   }
@@ -596,7 +596,7 @@ function keywordToHashSet(normalized_text) {
 }
 
 function updateKeyword(keyword) {
-  var arr = detected_keywords[keyword];	
+  var arr = detected_keywords[keyword];
   var arrlen = arr.length;
 
   var $li = $("<li class='keyword_collapsed'/>");
@@ -629,7 +629,7 @@ function updateKeyword(keyword) {
     }
 
     var onClick = "\"onKeywordOccurrenceSelected(" + start_time + "," + JSON.stringify(keywordFragments) + ")\"";
-    var $tr = $("<tr class='selectable' onClick=" + onClick + "/>"); 
+    var $tr = $("<tr class='selectable' onClick=" + onClick + "/>");
     var $td_index = $("<td class='index'>" + (index + 1) + ".</td>");
     var $td_start_label = $("<td class='bold'>Start:</td>");
     var $td_start = $("<td/>");
@@ -649,10 +649,10 @@ function updateKeyword(keyword) {
 
 function updateDetectedKeywords() {
   $('#keywords ul').empty();
-  keywords_to_search.forEach(function(element, index, array) { 
-    var keyword = element; 
+  keywords_to_search.forEach(function(element, index, array) {
+    var keyword = element;
     if(keyword in detected_keywords) {
-      updateKeyword(keyword); 
+      updateKeyword(keyword);
     }
     else {
       keywordNotFound(keyword);
@@ -699,15 +699,6 @@ function initTextScroll() {
   });
 };
 
-function onResize() {
-  var x_ratio = $('#canvas').width()/canvas.width;
-  var y_ratio = $('#canvas').height()/canvas.height;
-  canvas.width = $('#canvas').width();
-  canvas.height = $('#canvas').height();
-  ctx.setTransform(x_ratio, 0, 0, y_ratio, 0, 0);
-  draw();
-}
-
 function resetWorker() {
   runTimer = false;
   worker.postMessage({
@@ -740,8 +731,6 @@ exports.initDisplayMetadata = function() {
   $('#left-arrow').css('display', 'none');
   $('#right-arrow').css('display', 'none');
 
-  onResize(); // to adjust the canvas size
-
   var workerScriptBody =
     "var fifo = [];\n" +
     "var onmessage = function(event) {\n" +
@@ -752,10 +741,10 @@ exports.initDisplayMetadata = function() {
     "  }\n" +
     "  else if(type == 'shift' && fifo.length > 0) {\n" +
     "    var msg = fifo.shift();\n" +
-    "    postMessage({\n" + 
-    "     bins:msg.results[0].word_alternatives,\n" + 
-    "     kws:msg.results[0].keywords_result\n" + 
-    "    });\n" + 
+    "    postMessage({\n" +
+    "     bins:msg.results[0].word_alternatives,\n" +
+    "     kws:msg.results[0].keywords_result\n" +
+    "    });\n" +
     "  }\n" +
     "  else if(type == 'clear') {\n" +
     "    fifo = [];\n" +
@@ -783,7 +772,7 @@ function showCNsKWS(bins, kws) {
     $('#vslider').css('display', 'block');
   }
   $('#hslider').css('display', 'block');
-  $('#show_alternate_words').css('display', 'inline-block'); 
+  $('#show_alternate_words').css('display', 'inline-block');
   $('#canvas').css('display', 'block');
   $('#canvas-placeholder').css('display', 'none');
   $('#left-arrow').css('display', 'inline-block');
@@ -842,13 +831,13 @@ exports.showResult = function(msg, baseString, model) {
       if (japanese) {
         text = text.trim() + '。';
         text = text.replace(/ /g,'');
-      } 
+      }
       else {
         text = text.trim() + '. ';
       }
       baseString += text;
       $('#resultsText').val(baseString);
-    } 
+    }
     else {
       if(japanese) {
         text = text.replace(/ /g,''); // remove whitespaces
@@ -868,7 +857,7 @@ exports.getKeywordsToSearch = function() {
 
 $.subscribe('clearscreen', function() {
   clearScene();
-  clearDetectedKeywords(); 
+  clearDetectedKeywords();
   resetWorker();
 });
 
