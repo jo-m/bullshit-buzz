@@ -479,6 +479,12 @@ function parseKeywords(keywords_result) {
       detected_keywords[keyword] = [];
     }
     console.log("------>", keyword)
+
+    var http = new XMLHttpRequest();
+    http.open("POST", '/blink', true);
+    http.send();
+
+
     buzzer.play();
     detected_keywords[keyword] = detected_keywords[keyword].concat(arr);
   }
