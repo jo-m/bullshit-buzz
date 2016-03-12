@@ -15,7 +15,6 @@
  */
 'use strict';
 
-var initSessionPermissions = require('./sessionpermissions').initSessionPermissions;
 var initAnimatePanel = require('./animatepanel').initAnimatePanel;
 var initShowTab = require('./showtab').initShowTab;
 var initDragDrop = require('./dragdrop').initDragDrop;
@@ -30,7 +29,6 @@ exports.initViews = function(ctx) {
   initDragDrop(ctx);
   initRecordButton(ctx);
   initFileUpload(ctx);
-  initSessionPermissions();
   initShowTab();
   initAnimatePanel();
   initShowTab();
