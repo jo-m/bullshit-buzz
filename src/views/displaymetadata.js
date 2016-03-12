@@ -445,55 +445,6 @@ $('#btnLoadKWS input').click(function(e) {
   e.stopPropagation();
 });
 
-$('#btnLoadKWS input').change(function(e) {
-  e.stopPropagation();
-  clearKeywordsToSearch();
-  var selectedFile = $(this)[0].files[0];
-  if(typeof selectedFile == 'undefined') {
-    console.log('User cancelled OpenFile dialog. No keywords file loaded.');
-    return;
-  }
-
-  if($(this).val().lastIndexOf('.txt') == -1) {
-    $('#error-wrong-keywords-filetype').css('display', 'block');
-    return;
-  }
-
-  var reader = new FileReader();
-  reader.readAsText(selectedFile);
-  reader.onload = function() {
-    $('#keywords ul').empty();
-    var text = reader.result;
-    var keywordsToSearch = text.split('\n');
-    keywordsToSearch.forEach(addKeywordToSearch);
-    if(keywordsToSearch.length > 0) {
-      $('.keywords_title').css('display', 'block');
-      $('#keywords').css('display', 'block');
-      $('#transcription_text').css('width', '55%');
-    }
-  };
-});
-
-$('#tb_keywords').focus(function () {
-  if(keywordsInputDirty == false) {
-    keywordsInputDirty = true;
-    $(this).css('font-style', 'normal');
-    $(this).css('color', '#121212');
-    $(this).val('');
-  }
-});
-
-$('#tb_keywords').change(function() {
-  clearKeywordsToSearch();
-  var text = $(this).val();
-  text.split(',').forEach(addKeywordToSearch);
-  if(keywords_to_search.length > 0) {
-    $('.keywords_title').css('display', 'block');
-    $('#keywords').css('display', 'block');
-    $('#transcription_text').css('width', '55%');
-  }
-});
-
 // -----------------------------------------------------------------
 
 function keywordNotFound(keyword) {
@@ -789,6 +740,15 @@ function onTimer() {
   });
   if(runTimer == true) {
     setTimeout(onTimer, timeout);
+  }
+}
+
+exports.addKeyWord = function(word) {
+  addKeywordToSearch(word);
+  if(keywords_to_search.length > 0) {
+    $('.keywords_title').css('display', 'block');
+    $('#keywords').css('display', 'block');
+    $('#transcription_text').css('width', '55%');
   }
 }
 
