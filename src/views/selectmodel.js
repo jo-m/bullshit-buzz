@@ -20,7 +20,6 @@ var initPlaySample = require('./playsample').initPlaySample;
 
 exports.initSelectModel = function(ctx) {
 
-
   ctx.models.forEach(function(model) {
     $('#dropdownMenuList').append(
       $('<li>')
@@ -45,9 +44,6 @@ exports.initSelectModel = function(ctx) {
     localStorage.setItem('currentModel', newModel);
     ctx.currentModel = newModel;
     initPlaySample(ctx);
-    $("#tb_keywords").focus();
-    $("#tb_keywords").val('');
-    $("#tb_keywords").change();
     $.publish('clearscreen');
   });
 

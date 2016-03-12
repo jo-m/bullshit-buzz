@@ -709,7 +709,6 @@ exports.initDisplayMetadata = function() {
     var data = event.data;
     showCNsKWS(data.bins, data.kws);
     popped++;
-    console.log('----> popped', popped);
   };
 };
 
@@ -768,7 +767,6 @@ exports.showResult = function(msg, baseString, model) {
         msg:msg
       });
       pushed++;
-      console.log('----> pushed', pushed);
       if(runTimer == false) {
         runTimer = true;
         setTimeout(onTimer, timeout);

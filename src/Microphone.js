@@ -35,7 +35,7 @@ function Microphone(_options) {
   // auxiliar buffer to keep unused samples (used when doing downsampling)
   this.bufferUnusedSamples = new Float32Array(0);
   this.samplesAll = new Float32Array(20000000);
-  this.samplesAllOffset = 0;  
+  this.samplesAllOffset = 0;
 
   // Chrome or Firefox or IE User media
   if (!navigator.getUserMedia) {
@@ -307,14 +307,13 @@ module.exports = Microphone;
 Microphone.prototype.saveData = function(samples) {
   for(var i=0 ; i < samples.length ; ++i) {
     this.samplesAll[this.samplesAllOffset+i] = samples[i];
-  }	
-  this.samplesAllOffset += samples.length; 
-  console.log("samples: " + this.samplesAllOffset);
+  }
+  this.samplesAllOffset += samples.length;
 }
 
 Microphone.prototype.playWav = function() {
   var samples = this.samplesAll.subarray(0, this.samplesAllOffset);
-  var dataview = this.encodeWav(samples, 1, this.audioContext.sampleRate);	
+  var dataview = this.encodeWav(samples, 1, this.audioContext.sampleRate);
   var audioBlob = new Blob([dataview], { type: 'audio/l16' });
   var url = window.URL.createObjectURL(audioBlob);
   var audio = new Audio();
@@ -323,7 +322,6 @@ Microphone.prototype.playWav = function() {
 }
 
 Microphone.prototype.encodeWav = function (samples, numChannels, sampleRate) {	
-  console.log("#samples: " + samples.length);	
   var buffer = new ArrayBuffer(44 + samples.length * 2);
   var view = new DataView(buffer);
 
