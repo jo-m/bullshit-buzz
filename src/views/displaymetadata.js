@@ -360,14 +360,6 @@ function clearScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function clearKeywordsToSearch() {
-  keywords_to_search = [];
-  $('#error-wrong-keywords-filetype').css('display', 'none');
-  $('.keywords_title').css('display', 'none');
-  $('#keywords').css('display', 'none');
-  $('#transcription_text').css('width', '100%');
-}
-
 function clearDetectedKeywords() {
   $('#keywords ul').empty();
   detected_keywords = {};
@@ -477,20 +469,6 @@ function toggleSpottedKeywordClass(node) {
   }
 }
 
-$('#keywords ul').click(function(e) {
-  var node = e.srcElement == undefined ? e.target : e.srcElement;
-
-  if(node.className == 'keyword_text') {
-    toggleSpottedKeywordClass(node.parentNode);
-  }
-  else if(node.className == 'keyword_icon') {
-    toggleSpottedKeywordClass(node.parentNode.parentNode);
-  }
-  else {
-    toggleSpottedKeywordClass(node);
-  }
-});
-
 function parseKeywords(keywords_result) {
   for(var keyword in keywords_result) {
     var arr = keywords_result[keyword];
@@ -546,9 +524,14 @@ function keywordToHashSet(normalized_text) {
   return hashSet;
 }
 
+var buzzer = new Audio('audio/buzzer.mp3');
+
 function updateKeyword(keyword) {
   var arr = detected_keywords[keyword];
   var arrlen = arr.length;
+
+  console.log("====>", keyword)
+  buzzer.play();
 
   var $li = $("<li class='keyword_collapsed'/>");
   var $keyword_text = $("<span class='keyword_text'><img class='keyword_icon' src='images/open-icon.svg'>" + keyword + "</span>");
