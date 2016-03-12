@@ -29,6 +29,8 @@ const boldFont = 'bold ' + fontSize + 'px Arial';
 const italicFont = 'italic ' + fontSize + 'px Arial';
 const opacity = '0.6';
 
+const buzzer = new Audio('audio/buzzer.mp3');
+
 var showAllHypotheses = true;
 var keywordsInputDirty = false;
 var keywords_to_search = [];
@@ -476,6 +478,8 @@ function parseKeywords(keywords_result) {
     if(keyword in detected_keywords == false) {
       detected_keywords[keyword] = [];
     }
+    console.log("------>", keyword)
+    buzzer.play();
     detected_keywords[keyword] = detected_keywords[keyword].concat(arr);
   }
 }
@@ -524,14 +528,9 @@ function keywordToHashSet(normalized_text) {
   return hashSet;
 }
 
-var buzzer = new Audio('audio/buzzer.mp3');
-
 function updateKeyword(keyword) {
   var arr = detected_keywords[keyword];
   var arrlen = arr.length;
-
-  console.log("====>", keyword)
-  buzzer.play();
 
   var $li = $("<li class='keyword_collapsed'/>");
   var $keyword_text = $("<span class='keyword_text'><img class='keyword_icon' src='images/open-icon.svg'>" + keyword + "</span>");
