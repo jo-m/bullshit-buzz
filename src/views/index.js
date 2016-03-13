@@ -53,4 +53,11 @@ exports.initViews = function(ctx) {
   displaymetadata.addKeyWord("native");
   displaymetadata.addKeyWord("rock star");
   displaymetadata.addKeyWord("innovation");
+  displaymetadata.addKeyWord("deep learning");
+  displaymetadata.addKeyWord("rocket");
+  displaymetadata.addKeyWord("entrepreneur");
+  displaymetadata.addKeyWord("disruptive");
+  displaymetadata.addKeyWord("added value");
+  displaymetadata.addKeyWord("value adding");
+  displaymetadata.addKeyWord("out of the box");
 };

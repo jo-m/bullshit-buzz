@@ -1,4 +1,4 @@
-    cf env bullshit-buzz
+    cf env startup-valuate
     nano app.js
     npm install
     npm run build
