@@ -39,6 +39,16 @@ app.get('/', function(req, res) {
   res.render('index', { ct: req._csrfToken });
 });
 
+const SerialPort = require("serialport").SerialPort
+const serialPort = new SerialPort("/dev/cu.usbserial-A900F87D", {
+  baudrate: 9600
+}, false);
+serialPort.open()
+
+app.post('/blink', function(req, res, next) {
+  serialPort.write("\n");
+});
+
 // Get token using your credentials
 app.post('/api/token', function(req, res, next) {
   authService.getToken({url: config.url}, function(err, token) {
