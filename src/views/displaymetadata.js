@@ -30,6 +30,7 @@ const italicFont = 'italic ' + fontSize + 'px Arial';
 const opacity = '0.6';
 
 const buzzer = new Audio('audio/buzzer.mp3');
+var dollars = 0;
 
 var showAllHypotheses = true;
 var keywordsInputDirty = false;
@@ -478,14 +479,21 @@ function parseKeywords(keywords_result) {
     if(keyword in detected_keywords == false) {
       detected_keywords[keyword] = [];
     }
-    console.log("------>", keyword)
 
+    console.log("------>", keyword)
+    dollars = dollars + 1000000;
+    var dollars_disp = dollars.toLocaleString("de-CH",{style:"currency", currency:"CHF"})
+    console.log(dollars_disp)
+    $("#dollars").text(dollars_disp)
+
+    // blink
     var http = new XMLHttpRequest();
     http.open("POST", '/blink', true);
     http.send();
 
-
+    // buzzer
     buzzer.play();
+
     detected_keywords[keyword] = detected_keywords[keyword].concat(arr);
   }
 }
@@ -805,8 +813,4 @@ $.subscribe('clearscreen', function() {
   clearScene();
   clearDetectedKeywords();
   resetWorker();
-});
-
-$(window).resize(function() {
-  onResize();
 });

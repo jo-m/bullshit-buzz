@@ -1,12 +1,4 @@
-# Speech to Text Browser Application
-
-  The [Speech to Text][service_url] service uses IBM's speech recognition capabilities to convert speech in multiple languages into text. The transcription of incoming audio is continuously sent back to the client with minimal delay, and it is corrected as more speech is heard. The service is accessed via a WebSocket interface; a REST HTTP interface is also available;
-
-Node.js is also used to provide the browser client's authentication token.
-
-Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
-
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/speech-to-text-nodejs)
+# Startup Evaluator
 
 ## Getting Started
 
@@ -129,12 +121,3 @@ To do that, add '?debug=true' (without the quotations) in the URL.
 ## Contributing
 
   See [CONTRIBUTING](CONTRIBUTING.md).
-
-## Open Source @ IBM
-  Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
-
-[service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/speech-to-text.html
-[cloud_foundry]: https://github.com/cloudfoundry/cli
-[getting_started]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/getting_started/
-[sign_up]: https://console.ng.bluemix.net/registration/
-[browserify]: http://browserify.org/

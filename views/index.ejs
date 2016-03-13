@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="ct" content="<%= ct %>">
-    <title>Speech to Text</title>
+    <title>Startup Valuator</title>
     <link href="css/watson-bootstrap-style.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="images/favicon.ico" />
@@ -139,6 +139,11 @@
         </div><!-- /.row -->
 
       </div><!-- /.container -->
+
+      <div id="overlay" style="position:absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: white; z-index:1000; text-align: center; font-size: 9em; font-weight: bold; color: black;font-family: sans-serif">
+        <br>
+        <span id="dollars">CHF 0.00</span>
+      </div>
 
       <!-- for file upload dialog in toolbar -->
       <input style="display:none" type="file" id="fileUploadDialog">

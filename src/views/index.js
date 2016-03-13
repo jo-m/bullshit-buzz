@@ -44,16 +44,13 @@ exports.initViews = function(ctx) {
   displaymetadata.addKeyWord("cloud");
   displaymetadata.addKeyWord("data mining");
   displaymetadata.addKeyWord("data science");
-  displaymetadata.addKeyWord("e-learning");
-  displaymetadata.addKeyWord("responsive");
   displaymetadata.addKeyWord("real time");
   displaymetadata.addKeyWord("neural network");
   displaymetadata.addKeyWord("artificial intelligence");
-  displaymetadata.addKeyWord("machine learning");
-  displaymetadata.addKeyWord("industry 4.0");
   displaymetadata.addKeyWord("sustainable");
-  displaymetadata.addKeyWord("hack");
   displaymetadata.addKeyWord("hackers");
   displaymetadata.addKeyWord("low latency");
   displaymetadata.addKeyWord("native");
+  displaymetadata.addKeyWord("rock star");
+  displaymetadata.addKeyWord("innovation");
 };
