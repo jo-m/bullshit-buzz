@@ -486,11 +486,6 @@ function parseKeywords(keywords_result) {
     console.log(dollars_disp)
     $("#dollars").text(dollars_disp)
 
-    // blink
-    var http = new XMLHttpRequest();
-    http.open("POST", '/blink', true);
-    http.send();
-
     // buzzer
     buzzer.play();
 
